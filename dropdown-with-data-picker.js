@@ -231,6 +231,33 @@ function DropdownWithDataPicker(targetListId, initialValue) {
     }
 
 
+    function renderDropdown() {
+        var dropdownDisplayTemlate = '<div id="lookup-dropdown-field">'
+                                            '<div class="dropdown-data-picker ms-TextField customer-name-textbox-container">'
+                                                '<input type="text" class="ms-TextField-field" name="{0}">{1}</input>'
+                                            '</div>'
+                                            '<div class="dropdown-options-container">'
+                                                '<div class="dropdown-spinner ms-Spinner"></div>'
+                                                '<ul class="dropdown-options-list"></ul>'
+                                                '<span class="dropdown-error-message ms-formvalidation ms-csrformvalidation">'
+                                                    '<span role="alert"></span>'
+                                                '</span>'
+                                            '</div>'
+                                        '</div>';
+        if (initialValue) {
+            dropdownDisplayTemlate = String.format(
+                dropdownDisplayTemlate,
+                (initialValue.LookupId === 0 || initialValue.LookupId) ? initialValue.LookupId : '',
+                (initialValue.LookupValue) ? initialValue.LookupValue : '' 
+            );
+        } else {
+            dropdownDisplayTemlate = String.format(dropdownDisplayTemlate, '', '');
+        }
+
+        return dropdownDisplayTemlate;
+    }
+
+
     this.showErrorMessage = showErrorMessage.bind(this);
     this.render = render.bind(this);
 
